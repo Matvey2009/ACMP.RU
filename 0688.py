@@ -12,3 +12,4 @@ for i in range(n):
 		break
 if k != 1:		
 	print("NO")
+ 
