@@ -1,6 +1,5 @@
 n = int(input())
-a = b = c = 1
-for i in range(n):
-	a = (b+c)%10 
-	c, b = b, a
-print(c)
+a = b = 1
+for i in range(n%60-1):
+	a, b = b, (a+b)%10
+print(b)
