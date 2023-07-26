@@ -4,8 +4,9 @@ arrr=[]
 for i in n:
 	arr.append(i)
 	arrr.append(i)
+
 if "0" in arr:
-	print("No", 1)
+	print("No")
 else:
 	arr.sort()
 	arrr.sort()
@@ -13,11 +14,11 @@ else:
 	r = ''.join(arr)
 	e = ''.join(arrr)
 	t1 = t2 = 0 
-	for i in range(2, int(e)):
+	for i in range(2, int(int(e)**0.5)+1):
 		if(int(e)%i == 0):
 			t2+=1
 			break
-	for i in range(2, int(r)):
+	for i in range(2, int(int(r)**0.5)+1):
 		if(int(r)%i == 0):
 			t1+=1
 			break
