@@ -5,3 +5,6 @@ for i in range(2, n+1):
 	s+=math.factorial(n)//(math.factorial(n-i)*math.factorial(i))
 print(s)
 
+
+n=int(input())
+print(2**n-n-1)
