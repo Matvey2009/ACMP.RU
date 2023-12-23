@@ -1,38 +1,64 @@
 n, m, k  = map(int, input().split())
-arr = list()
+arr = []
+for i in range(n):
+	c = input()
+	for j in range(m):
+		if c[j] == "*":
+			arr.append([i, j])
+for _ in range(k):
+	mtx = [[0]*m for i in range(n)]
+	for i in arr:
+		mtx[i[0]][i[1]]+=10
+		mtx[(i[0]-1+n)%n][(i[1]-1+m)%m]+=1
+		mtx[(i[0]-1+n)%n][i[1]]+=1
+		mtx[(i[0]-1+n)%n][(i[1]+1+m)%m]+=1
+		mtx[i[0]][(i[1]-1+m)%m]+=1
+		mtx[i[0]][(i[1]+1+m)%m]+=1
+		mtx[(i[0]+1+n)%n][(i[1]-1+m)%m]+=1
+		mtx[(i[0]+1+n)%n][i[1]]+=1
+		mtx[(i[0]+1+n)%n][(i[1]+1+m)%m]+=1
+	arr = []
+	for i in range(n):
+		for j in range(m):
+			if mtx[i][j] == 3 or (mtx[i][j] > 11 and mtx[i][j] < 14):
+				arr.append([i, j])
+mtx = [['.']*m for i in range(n)]
+for i in arr:
+	mtx[i[0]][i[1]]='*'
+for i in range(n):
+	print(''.join(mtx[i]))
+
+'''
+n, m, k  = map(int, input().split())
+arr = []
 for i in range(n):
 	arr.append(list(input()))
 for _ in range(k):
-	le = [""]*n
-	print(le)
-	print()
-	for i in range(n):
-		le[i].append([]*m)
+	tmp = [['.']*m for i in range(n)]
 	for i in range(n):
 		for j in range(m):
-			#n, m = n-1, n-1
 			t = 0
-			if arr[i*n%n-1][j*n%n-1] == "*":#-1 -1
+			if arr[(i-1+n)%n][(j-1+m)%m] == "*":
 				t+=1
-			if arr[i*n%n][j*n%n-1] == "*":#0 -1
+			if arr[(i-1+n)%n][j] == "*":
 				t+=1
-			if arr[i*n%n+1][j*n%n-1] == "*":#+1 -1
+			if arr[(i-1+n)%n][(j+1+m)%m] == "*":
 				t+=1
-			if arr[i*n%n-1][j*n%n] == "*":#-1 0
+			if arr[i][(j-1+m)%m] == "*":
 				t+=1
-			if arr[i*n%n+1][j*n%n] == "*":#+1 0
+			if arr[i][(j+1)%m] == "*":
 				t+=1
-			if arr[i*n%n-1][j*n%n+1] == "*":#-1 +1
+			if arr[(i+1+n)%n][(j-1+m)%m] == "*":
 				t+=1
-			if arr[i*n%n][j*n%n+1] == "*":#0 +1
+			if arr[(i+1+n)%n][j] == "*":
 				t+=1
-			if arr[i*n%n+1][j*n%n+1] == "*":#+1 +1
+			if arr[(i+1+n)%n][(j+1+m)%m] == "*":
 				t+=1
-			if (t == 3) or (t > 1 and t < 4 and arr[i][j] == "*"):
-				le[i][j] == "*"
+			if (arr[i][j] == "*" and t > 1 and t < 4) or (not arr[i][j] == "*" and t == 3):
+				tmp[i][j] = "*"
 			else:
-				le[i][j] == "."
-	arr = le.copy()
+				tmp[i][j] = "."
+	arr = tmp
 for i in range(n):
-	print(*le[i])
-		
+	print(''.join(arr[i]))
+'''
